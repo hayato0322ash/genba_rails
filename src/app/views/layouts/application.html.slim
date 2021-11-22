@@ -2,11 +2,16 @@ doctype html
 html
   head
     title
-      | App
+      = full_title(yield(:title))
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      .navbar-brand Taskleaf
+    .container
+      - if flash.notice.present?
+        .alert.alert-success = flash.notice
+      = yield
