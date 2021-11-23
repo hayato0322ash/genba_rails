@@ -16,3 +16,9 @@ ja:
         description: 詳しい説明
         created_at: 登録日時
         updated_at: 更新日時
+      user:
+        id: ID
+        name: ユーザー名
+        admin: 管理者権限
+        created_at: 登録日時
+        updated_at: 更新日時
