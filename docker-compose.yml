@@ -10,6 +10,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
   web:
+    &app_base
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b
       '0.0.0.0'"
@@ -19,8 +20,33 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - chrome
     stdin_open: true
     tty: true
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub #追加、どのコンテナのブラウザを使用するか指定
+
+  webpacker:
+    <<: *app_base
+    command: bash -c "bundle exec bin/webpack-dev-server"
+    depends_on:
+      - web
+    ports:
+      - '3035:3035'
+    tty: false
+    stdin_open: false
+    environment:
+      BUNDLE_APP_CONFIG: ./.bundle
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+  chrome:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+
 volumes:
   mysql-data:
     driver: local
