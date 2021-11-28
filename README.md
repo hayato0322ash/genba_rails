@@ -1,48 +1,4 @@
-初期設定！！(完了したら消去！)
 
-rails(6系)をインストールする　docker-compose buildの前に実行　
-
-% docker-compose run web rails new . --force --no-deps --database=mysql --skip-test --webpacker
-
-※rspecのために「--skip-test」で、Minitestをスキップ。
-※「--webpacker」でwebpackerをインストール
-
-↓
-
-config/database.ymlをMySQL用に更新する
-
-default: &default
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("MYSQL_USERNAME", "root") %>
-  password: <%= ENV.fetch("MYSQL_PASSWORD", "password") %>
-  host: <%= ENV.fetch("MYSQL_HOST", "db") %>
-
-development:
-  <<: *default
-  database: myapp_development
-
-test:
-  <<: *default
-  database: myapp_test
-
-production:
-  <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
-
-
-更新したら「docker-compose run web rails db:create」
-
-↓
-
-コンテナを起動させる
-
-「docker-compose up」
-
----
 ---
 
 README
@@ -65,5 +21,53 @@ README
 	- 画像アップロードはどういったライブラリを使っているのか？
 	- デプロイはどのようにおこなっているのか？
 	- などのポートフォリオに使った技術を記述する。
+
+  使用技術
+
+- 環境構築
+  - docker
+
+- gitブランチ管理
+  - github-flow
+
+- ウェブフレームワーク
+  - rails 6.1.4.1
+
+- データベース
+  - mysql2
+
+- gemバージョン管理
+  - bundler
+
+- テンプレートエンジン
+  - slim-rails
+
+- 画像のアップロード
+  - Active_storage
+
+- ダイジェスト機能
+  - bcrypt
+
+- ページネーション
+  - kaminari
+
+- 検索機能
+  - ransack
+
+- メイラーテスト
+  - letter_opener_web
+
+- 単体、統合テスト
+  - rspec-rails
+  - factory_bot_rails
+  - Capybara
+
+- デザイン
+  - bootstrap
+
+
+
+
+
 ---
 GitHubはスクロールしないとREADMEの全体が見えないので、上部に情報を詰め込む

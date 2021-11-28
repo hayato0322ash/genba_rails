@@ -47,6 +47,14 @@ services:
     ports:
       - 4444:4444
 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "./data/redis:/data"
+    command: redis-server --appendonly yes
+
 volumes:
   mysql-data:
     driver: local

@@ -17,11 +17,16 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap'
 gem 'html2slim'
 gem 'jbuilder', '~> 2.7'
+gem 'kaminari'
+gem 'letter_opener_web'
 gem 'rails_autolink'
+gem 'ransack'
+gem 'sidekiq'
 gem 'slim-rails'
 gem 'solargraph'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'redis-namespace'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver

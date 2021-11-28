@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :login_required
 
+  add_flash_types :success, :info, :warning, :danger
+
   private
 
   def current_user
@@ -10,9 +12,5 @@ class ApplicationController < ActionController::Base
 
   def login_required
     redirect_to login_url unless current_user
-  end
-
-  def set_locale
-    I18n.locale = current_user&.locale || :ja
   end
 end

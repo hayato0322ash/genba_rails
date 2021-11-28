@@ -1,0 +1,8 @@
+:verbose: false
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+#concurrencyは同時実行数
+#sidekiqの親プロセスも含むそうなので、基本2以上に設定するのでは？
+:concurrency: 25
+:queues:
+  - default
