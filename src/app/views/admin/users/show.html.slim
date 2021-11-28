@@ -1,4 +1,4 @@
-h1 ユーザーの詳細
+- provide :title, "#{@user.name} さんのアカウント情報"
 
 .nav.justify-content-end 
   = link_to  "一覧", admin_users_path, class: 'nav-link'
@@ -6,22 +6,22 @@ h1 ユーザーの詳細
 table.table.table-hover 
   tbody 
     tr 
-      th= User.human_attribute_name(:id)
+      th= User.human_attribute_name :id 
       td= @user.id
     tr 
-      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name :name
       td= @user.name
     tr 
-      th= User.human_attribute_name(:email)
+      th= User.human_attribute_name :email
       td= @user.email
     tr 
-      th= User.human_attribute_name(:admin)
+      th= User.human_attribute_name :admin
       td= @user.admin
     tr 
-      th= User.human_attribute_name(:created_at)
+      th= User.human_attribute_name :created_at
       td= @user.created_at
     tr 
-      th= User.human_attribute_name(:updated_at)
+      th= User.human_attribute_name :updated_at
       td= @user.updated_at
   
   

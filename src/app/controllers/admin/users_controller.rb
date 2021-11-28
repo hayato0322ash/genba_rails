@@ -11,12 +11,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」登録完了しました！"
-    else
-      render :new
-    end
+    @user = User.new user_params
+    return redirect_to admin_user_url(@user), success: 'アカウントを作成しました！' if @user.save
+
+    render :new
   end
 
   def show; end
@@ -24,16 +22,14 @@ class Admin::UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update(user_params)
-      redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」を更新しました！"
-    else
-      render :edit
-    end
+    return redirect_to admin_user_url(@user), success: "ユーザー「#{@user.name}」を更新しました！" if @user.update user_params
+
+    render :edit
   end
 
   def destroy
     @user.destroy
-    redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました!"
+    redirect_to admin_users_url, danger: "ユーザー「#{@user.name}」を削除しました!"
   end
 
   private
@@ -43,7 +39,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find params[:id]
   end
 
   def require_admin

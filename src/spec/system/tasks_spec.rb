@@ -53,11 +53,12 @@ describe 'タスク管理機能', type: :system do
     before do
       visit new_task_path
       fill_in '名称',	with: task_name
-      click_button '登録する'
+      click_button '確認'
     end
 
     context '新規作成画面で名称を入力した時' do
       it '正常に登録される' do
+        click_button '登録'
         expect(page).to have_selector '.alert-success', text: '新規作成のテストを書く'
       end
     end
