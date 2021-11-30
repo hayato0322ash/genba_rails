@@ -57,7 +57,10 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url, danger: "タスク「#{@task.name}」を削除しました！"
+    # redirect_to tasks_url, danger: "タスク「#{@task.name}」を削除しました！"
+
+    # Ajax
+    # head :no_content
   end
 
   private
